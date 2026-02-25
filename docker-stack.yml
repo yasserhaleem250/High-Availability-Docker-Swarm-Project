@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  web:
+    image: youruser/myapp:latest
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+networks:
+  default:
+    driver: overlay
